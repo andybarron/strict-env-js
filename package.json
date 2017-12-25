@@ -1,0 +1,40 @@
+{
+  "name": "strict-env",
+  "version": "1.0.0",
+  "description": "Enforce env vars for 12-factor apps in dev or prod",
+  "main": "dist/strict-env",
+  "scripts": {
+    "build": "npm-run-all \"build:*\"",
+    "build:cjs": "rollup -c rollup/commonjs.mjs",
+    "build:es": "rollup -c rollup/es2015.mjs",
+    "clean": "trash dist/ coverage/",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndyBarron/strict-env.git"
+  },
+  "keywords": [
+    "env",
+    "environment",
+    "variable",
+    "config",
+    "configuration",
+    "12factor"
+  ],
+  "author": "Andy Barron <AndrewLBarron@gmail.com>",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/AndyBarron/strict-env/issues"
+  },
+  "homepage": "https://github.com/AndyBarron/strict-env#readme",
+  "devDependencies": {
+    "babel-core": "6.26.0",
+    "babel-preset-env": "1.6.1",
+    "jest": "22.0.4",
+    "npm-run-all": "4.1.2",
+    "rollup": "0.53.0",
+    "rollup-plugin-babel": "3.0.3",
+    "trash-cli": "1.4.0"
+  }
+}
