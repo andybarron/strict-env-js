@@ -10,14 +10,18 @@ const assert = (condition, message = 'Internal assertion error') => {
 
 const hasOwn = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop);
 
+// eslint-disable-next-line no-process-env
+const defined = (name) => name in process.env;
+
+// eslint-disable-next-line no-process-env
+const getOptionalString = (name) => process.env[name];
+
 const getString = (name) => {
-  if (!(name in process.env)) {
+  if (!defined(name)) {
     throw new Error(`Missing required environment variable: "${name}"`);
   }
-  return process.env[name];
+  return getOptionalString(name);
 };
-
-const getOptionalString = (name) => process.env[name];
 
 const getNumber = (name) => {
   const raw = getString(name);
@@ -27,7 +31,7 @@ const getNumber = (name) => {
   return Number(raw);
 };
 
-const getOptionalNumber = (name) => name in process.env ?
+const getOptionalNumber = (name) => defined(name) ?
   getNumber(name) :
   undefined;
 
@@ -39,7 +43,7 @@ const getInteger = (name) => {
   return Number(raw);
 };
 
-const getOptionalInteger = (name) => name in process.env ?
+const getOptionalInteger = (name) => defined(name) ?
   getInteger(name) :
   undefined;
 
@@ -48,17 +52,14 @@ const getBoolean = (name) => {
   switch (raw) {
     case 'true':
       return true;
-      break;
     case 'false':
       return false;
-      break;
     default:
       throw new Error(`Environment variable should be a boolean: "${name}"`);
-      break;
   }
 };
 
-const getOptionalBoolean = (name) => name in process.env ?
+const getOptionalBoolean = (name) => defined(name) ?
   getBoolean(name) :
   undefined;
 
@@ -71,17 +72,19 @@ const getJson = (name) => {
   }
 };
 
-const getOptionalJson = (name) => name in process.env ?
+const getOptionalJson = (name) => defined(name) ?
   getJson(name) :
   undefined;
 
-export const init = (vars, options) => {
+export const init = (vars) => {
   assert(vars, 'Missing environment variable config');
   assert(typeof vars === 'object',
     'Environment variable config must be an object');
-  const output = {};
+  const output = Object.create(null);
   for (const name in vars) {
-    if (!hasOwn(vars, name)) { continue; }
+    if (!hasOwn(vars, name)) {
+      continue;
+    }
     const type = vars[name];
     let value;
     switch (type) {
@@ -121,4 +124,4 @@ export const init = (vars, options) => {
     output[name] = value;
   }
   return output;
-}
+};

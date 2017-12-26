@@ -1,0 +1,5 @@
+env:
+  node: true
+extends: '@andybarron/eslint-config'
+parserOptions:
+  sourceType: module
