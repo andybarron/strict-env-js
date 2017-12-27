@@ -125,7 +125,7 @@ describe('port', () => {
 
 describe('json', () => {
   it('should allow valid json', () => {
-    expect(transform.json(JSON.stringify({foo: 'bar'}), VAR_NAME)).toEqual({foo: 'bar'});
+    expect(transform.json(JSON.stringify({ foo: 'bar' }), VAR_NAME)).toEqual({ foo: 'bar' });
     expect(transform.json(JSON.stringify(['foo', 'bar']), VAR_NAME)).toEqual(['foo', 'bar']);
     expect(transform.json(JSON.stringify(null), VAR_NAME)).toEqual(null);
     expect(transform.json(JSON.stringify(1), VAR_NAME)).toEqual(1);

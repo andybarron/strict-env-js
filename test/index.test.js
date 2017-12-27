@@ -3,9 +3,8 @@ const index = require('../src');
 
 const ORIGINAL_ENV = Object.create(null);
 
-for (const [key, value] of Object.entries(process.env)) {
-  ORIGINAL_ENV[key] = value;
-  delete process.env[key];
+for (const key of Object.keys(process.env)) {
+  ORIGINAL_ENV[key] = process.env[key];
 }
 
 afterEach(() => {
@@ -59,9 +58,6 @@ describe('config', () => {
     expect(() => index.config({ PROTO: index.string }, object)).toThrow();
   });
   it('should fail for non-function transformers', () => {
-    const setings = {
-      BANANA: 'i am not a function! :O',
-    };
-    expect(() => index.config(settings)).toThrow();
+    expect(() => index.config({ BANANA: 'i am not a function! :O' })).toThrow();
   });
 });

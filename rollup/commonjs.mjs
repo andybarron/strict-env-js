@@ -13,7 +13,7 @@ export default {
 
   plugins: [
     resolve({
-      extensions: [ '.mjs' ],
+      extensions: ['.mjs'],
       modulesOnly: true,
     }),
     babel({
