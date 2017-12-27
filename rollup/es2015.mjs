@@ -1,4 +1,5 @@
 import babel from 'rollup-plugin-babel';
+import resolve from 'rollup-plugin-node-resolve';
 
 export default {
 
@@ -11,6 +12,10 @@ export default {
   },
 
   plugins: [
+    resolve({
+      extensions: [ '.mjs' ],
+      modulesOnly: true,
+    }),
     babel({
       exclude: 'node_modules/**',
     }),
