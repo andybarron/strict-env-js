@@ -38,6 +38,7 @@
     "@andybarron/eslint-config": "1.0.3",
     "babel-core": "6.26.0",
     "babel-preset-env": "1.6.1",
+    "coveralls": "3.0.0",
     "eslint": "4.14.0",
     "jest": "22.0.4",
     "npm-run-all": "4.1.2",
