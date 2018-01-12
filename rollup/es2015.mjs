@@ -3,6 +3,8 @@ import resolve from 'rollup-plugin-node-resolve';
 
 export default {
 
+  external: ['dotenv'],
+
   input: 'src/index.mjs',
 
   output: {
