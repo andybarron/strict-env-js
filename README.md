@@ -37,7 +37,7 @@ module.exports = env.config({
    *         if not set. (This allows you to specify variables that
    *         are optional or have default values.)
    * name - String name of the target environment variable. You
-   *        sholud use this to generate nice error messages.
+   *        should use this to generate nice error messages.
    */
   CUSTOM: (value, name) => {
     if (/\d+/.test(value)) {
